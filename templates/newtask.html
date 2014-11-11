@@ -1,0 +1,16 @@
+{% extends "main.html" %}
+
+
+{% block content %}
+<div class="sign">
+	<form method="post">
+		Enter finish date:<br/>
+		<input type="date" name="finish_date"/><br/>
+		Name:<br/>
+		<input type="text" name="task_name"/><br/>
+		Task:<br/>
+		<textarea name="task_body" row="2" cols="50"></textarea><br/><br/>
+		<input type="submit" value="Save"/>
+	</form>
+</div>
+{% endblock content %}

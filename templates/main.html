@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+	<title>{{title}}</title>
+	<link rel="stylesheet" href="/static/style.css" />
+	<link rel="shortcut icon" href="/static/favicon.ico" />
+	<meta charset="utf-8" />
+</head>
+<body>
+	{{fortest}}
+	<div id="header">
+		<a href="/"><img id="logo" src="/static/cooltext1272463757.png"/></a>
+		<div id="user-info">
+			{% if username %}
+				<a href="/user/{{username}}">{{username}}</a><br/>
+				<a href="/logout">Logout</a>
+			{% else %}
+				<a href="/login">Log in</a><br/>
+				<a href="/register">Register</a>
+			{% endif %}
+		</div>
+	</div>
+	
+	<div id="content">
+			{% block content %}
+			{% if username %}
+				
+				<div class="sign">
+					<div id="menu">
+						<a href="/newtask"><button>+Add new</button></a>
+					</div>
+					<form method="post">
+						{% if tasks %}
+							<input type="submit" value="Save changes"/></br>
+						{% endif %}
+						<table>
+
+						{% for task in tasks %}
+							<tr class="{{row_class}}">
+								<td>
+									<input type="checkbox" name="{{task.name}}" {{task.checked}}/>
+								</td>
+								<td class="task_column">
+									{{task.name}}
+								</td>
+								<td>
+									<span class="date_style">Finish to {{task.finish_time.strftime("%c")}}</span>
+								</td>
+							</tr>
+							<tr>
+								<td>
+								</td>
+								<td colspan="2">
+									{{task.body}}
+								</td>
+							</tr>
+						{% endfor %}
+						</table>
+					</form>
+				</div>
+			{% else %}
+			<div class="sign">
+					<a href="/login">Log in</a>&nbsp;or&nbsp;<a href="/register">Join</a> for work.
+				</div>
+			{% endif %}
+			{% endblock %}
+		
+	</div>
+
+
+
+	<div id="footer">
+
+	</div>
+</body>
+</html>
